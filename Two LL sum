@@ -1,0 +1,77 @@
+class Solution
+{
+    public:
+        
+    struct Node*Reverse(struct Node* LL){
+       if(LL==NULL||LL->next==NULL){
+           return LL;
+       }
+       Node*rest=Reverse(LL->next);
+       LL->next->next=LL;
+       LL->next=NULL;
+       return rest;
+    }
+    //Function to add two numbers represented by linked list.
+    struct Node* addTwoLists(struct Node* first, struct Node* second)
+    {
+         if(first==NULL){
+           return second;
+       }
+       if(second==NULL){
+           return first;
+       }
+       first=Reverse(first);
+       second=Reverse(second);
+      
+       Node*anshead=NULL;
+       Node*anstail=NULL;
+       int carry=0;
+       while(first!=NULL && second!=NULL){
+           int sum=carry+first->data+second->data;
+           int digit=sum%10;
+           carry=sum/10;
+           Node* newNode=new Node(digit);
+           if(anshead==NULL){
+               anshead=newNode;
+               anstail=newNode;
+
+           }
+           else{
+               anstail->next=newNode;
+               anstail=newNode;
+           }
+           first=first->next;
+           second=second->next;
+       }
+       while(first!=NULL){
+           int sum=carry+first->data;
+           int digit=sum%10;
+           carry=sum/10;
+           Node* newNode=new Node(digit);
+           anstail->next=newNode;
+           anstail=newNode;
+           first=first->next;
+       }
+       while(second!=NULL){
+           int sum=carry+second->data;
+           int digit=sum%10;
+           carry=sum/10;
+           Node* newNode=new Node(digit);
+           anstail->next=newNode;
+           anstail=newNode;
+           second=second->next;
+       }
+       while(carry!=0){
+           int sum=carry;
+           int digit=sum%10;
+           carry=sum/10;
+           Node* newNode=new Node(digit);
+           anstail->next=newNode;
+           anstail=newNode;
+       }
+       anshead=Reverse(anshead);
+       
+       return anshead;
+
+    }
+};
