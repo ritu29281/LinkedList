@@ -1,0 +1,35 @@
+ListNode* removeNthFromEnd(ListNode* head, int n) {
+       ListNode* temp=head;
+       int i=1;
+       int l=0;
+       while(temp){
+           temp=temp->next;
+           l++;
+       }
+       if(l==n){
+           return head->next;
+       }
+       for(temp=head;i<l-n;i++){
+           temp=temp->next;
+       }
+       temp->next=temp->next->next;
+       return head;
+    }
+// GFG //
+Node* deleteNode(Node *head,int x)
+{
+     Node* temp=head;
+     if(x==NULL){
+         return NULL;
+     }
+     if(x==1){
+         return head->next;
+     }
+     int i=1;
+     for(temp=head;i<x-1;i++){
+           temp=temp->next;
+      }
+      temp->next=temp->next->next;
+      return head;
+    
+}
