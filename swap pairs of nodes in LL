@@ -1,0 +1,29 @@
+ Node* pairWiseSwap(struct Node* head) 
+    {
+        if(head==NULL){
+            return head;
+        }
+        if(head->next==NULL){
+            return head;
+        }
+       Node* dummy= new Node(0);
+       dummy->next=head;
+       Node* prev=dummy;
+       Node* curr=head;
+       while(curr!=NULL && curr->next!=NULL){
+           Node* forward=curr->next;
+           curr->next=forward->next;
+           prev->next=forward;
+           forward->next=curr;
+           prev=curr;
+           curr=curr->next;
+       }
+       return dummy->next;
+    }
+    \\ EX: 1 2 3 4
+    there is dummy node before head= D     1      2       3     4
+                                    prev  curr forward
+                         curr->next=forward->next :  1->3
+                         prev->next=forward       :  D->2
+                         forward->next=curr       :  D->2->1->3
+                         prev=curr and curr=curr->next for further steps
