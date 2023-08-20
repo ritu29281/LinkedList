@@ -1,0 +1,20 @@
+ ListNode* swapPairs(ListNode* head) {
+        if(head==NULL){
+            return NULL;
+        }
+        if(head->next==NULL){
+            return head;
+        }
+        ListNode*prev=head;
+        ListNode*curr=head->next;
+        while( curr!=NULL && curr->next!=NULL){
+            swap(prev->val,curr->val);
+            prev=prev->next->next;
+            curr=curr->next->next;
+        }
+        // agar curr->next NULL ho jaye mtlb last do hi swap krne he
+       if(curr!=NULL && prev!=NULL){
+             swap(prev->val,curr->val);
+        }
+       return head;
+    }
