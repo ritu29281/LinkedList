@@ -1,0 +1,23 @@
+ ListNode* swapNodes(ListNode* head, int k) {
+        int len=0;
+        int i=1;
+        ListNode* ptr=head;
+        ListNode* qtr=head;
+        while(ptr!=NULL){
+        len++;
+        ptr=ptr->next;
+        }
+       
+        ListNode* ptr1=head;
+        while(i!=k){
+            ptr1=ptr1->next;
+            i++;
+        }
+        int q=1;
+        while(q!=(len-k+1)){
+            qtr=qtr->next;
+            q++;
+        }
+        swap(ptr1->val,qtr->val);
+      return head;
+    }
