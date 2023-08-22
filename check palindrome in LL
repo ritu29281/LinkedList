@@ -1,0 +1,46 @@
+Node* reverse(Node* head){
+       Node* prev=NULL;
+       Node* curr=head;
+       Node* fb=curr->next;
+       while(curr!=NULL){
+           fb=curr->next;
+           curr->next=prev;
+           prev=curr;
+           curr=fb;
+       }
+       return prev;
+   }
+    //Function to check whether the list is palindrome.
+    bool isPalindrome(Node *head)
+    {
+        if(head==NULL){
+          return true;
+      }  
+      if(head->next==NULL){
+          return true;
+      }
+      //find middle element
+     Node*slow= head;
+     Node*fast= head->next;
+      while(fast!=NULL){
+          fast=fast->next;
+          if(fast!=NULL){
+              fast=fast->next;
+              slow=slow->next;
+          }
+      }
+      Node* ans= reverse(slow->next);
+      slow->next=ans;
+      Node*temp1=head;
+      Node*temp2=ans;
+      while(temp2!=NULL){
+          if(temp1->data!=temp2->data){
+              return false;
+          }
+          else{
+              temp1=temp1->next;
+              temp2=temp2->next;
+          }
+      }
+      return true;
+    }
