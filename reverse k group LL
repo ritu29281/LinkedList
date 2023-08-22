@@ -1,0 +1,59 @@
+  int getlength(ListNode* head){
+        int count=0;
+        ListNode* temp=head;
+        while(temp!=NULL){
+            count++;
+            temp=temp->next;
+        }
+        return count;
+    }
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        if(head==NULL){
+            return NULL; 
+        }
+        int len=getlength( head);
+        if(k>len){
+            return head;
+        }
+        ListNode* prev=NULL;
+        ListNode* curr=head;
+        ListNode* fb=curr->next;
+        int count=0;
+        while(count<k){
+            fb=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=fb;
+            count++;
+        }
+        if(fb!=NULL){
+            ListNode* ans= reverseKGroup(fb,k);
+            head->next=ans;
+        }
+        return prev;
+    }
+//GFG//
+ struct node *reverse (struct node *head, int k)
+    { 
+       if(head==NULL){
+            return NULL; 
+        }
+       
+        node* prev=NULL;
+        node* curr=head;
+        node* fb=NULL;
+        int count=0;
+        while(curr!= NULL && count<k){
+            fb=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=fb;
+            count++;
+        }
+        if(fb!=NULL){
+            node* ans= reverse(fb,k);
+            head->next=ans;
+        }
+        return prev;
+    }  
+    
