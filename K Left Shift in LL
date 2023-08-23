@@ -1,0 +1,27 @@
+N = 5
+value[] = {2, 4, 7, 8, 9}
+k = 3
+Output: 8 9 2 4 7
+Code::
+ Node* rotate(Node* head, int k)
+    {
+       if(head==NULL || k==0){
+            return head;
+        }
+        if(head->next==NULL){
+            return head;
+        }
+        Node* temp=head;
+        Node* ptr=head;
+        while(temp->next!=NULL){
+            temp=temp->next;
+        }
+        temp->next=head;
+        while(k>1){
+            ptr=ptr->next;
+            k--;
+        }
+        head=ptr->next;
+        ptr->next=NULL;
+        return head;
+    }
