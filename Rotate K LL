@@ -1,0 +1,40 @@
+Input: head = [1,2,3,4,5], k = 2
+Output: [4,5,1,2,3]
+Code::
+ListNode* rotate(ListNode* head){
+       ListNode* prev=NULL;
+       ListNode*curr=head;
+       while(curr->next!=NULL){
+           prev=curr;
+           curr=curr->next;
+       }
+       curr->next=head;
+       prev->next=NULL;
+       return curr;
+   }
+    ListNode* rotateRight(ListNode* head, int k) {
+        if(head==NULL || k==0){
+            return head;
+        }
+        if(head->next==NULL){
+            return head;
+        }
+        int count=0;
+        int len=1;
+        ListNode* ptr=head;
+        ListNode* temp=head;
+        ListNode* ans=NULL;
+        while(ptr->next!=NULL){
+            ptr=ptr->next;
+            len++;
+        }
+        //agar k jada hoga length se to repeat hone lgaega 
+        //jese agar len=3 he or k=4 to last node hi head hogi same as k=1;
+        k=k%len;
+        while(count<k){
+            temp=rotate(temp);
+            count++;
+        }
+        return temp;
+
+    }
