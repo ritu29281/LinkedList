@@ -1,0 +1,40 @@
+N = 4
+value[] = {1,2,3,4}
+X = 1
+Output: 1
+Explanation: The link list looks like 
+1 -> 2 -> 3 -> 4
+^              |
+|______________|
+A loop is present. 
+If you remove it successfully, 
+the answer will be 1. 
+Code::
+
+void removeLoop(Node* head)
+    {
+        Node* slow=head;
+        Node* fast=head;
+        bool loop=false;
+        while(fast!=NULL && fast->next!=NULL && fast->next->next!=NULL){
+            slow=slow->next;
+            fast=fast->next->next;
+            if(slow==fast){
+                loop=true;
+                slow=head;
+                break;
+            }
+        }
+        if(!loop){
+            return;
+        }
+        while(slow!=fast){
+            slow=slow->next;
+            fast=fast->next;
+        }
+        while(fast->next!=slow){
+            fast=fast->next;
+        }
+        fast->next=NULL;
+        
+    }
