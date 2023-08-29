@@ -1,0 +1,32 @@
+
+ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+     ListNode* temp1=headA;
+     ListNode* temp2=headB;
+     int lenA=0,lenB=0;
+     while(temp1){
+       lenA++;
+       temp1=temp1->next;  
+     }    
+     while(temp2){
+       lenB++;
+       temp2=temp2->next;
+     }  
+     int l=abs(lenA-lenB);
+     if(lenA>lenB){
+         while(l--){
+                headA = headA->next;
+     } }
+     else if(lenA<lenB){
+         while(l--){
+            headB=headB->next;
+         }
+     } 
+     while(headA!=NULL && headB!=NULL){
+         if(headA==headB){
+             return headA;
+         }
+         headA=headA->next;
+         headB=headB->next;
+     } 
+     return NULL;  
+    }
