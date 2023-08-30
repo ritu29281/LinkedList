@@ -1,0 +1,35 @@
+Input:
+L1 = 10->20->40->50
+L2 = 15->40
+Output: 40
+Code:
+Node* findIntersection(Node* head1, Node* head2)
+{
+     Node* temp1=head1;
+     Node* temp2=head2;
+     Node* head=NULL;
+     Node* tail=NULL;
+     while(temp1!=NULL && temp2!=NULL){
+         if(temp1->data==temp2->data){
+             Node* node=new Node(temp1->data);
+             if(head==NULL){
+                 head=node;
+                 tail=node;
+             }
+             else{
+             tail->next=node;
+             tail=node;
+                 
+             }
+             temp1=temp1->next;
+             temp2=temp2->next;
+         }
+         else if(temp1->data>temp2->data){
+             temp2=temp2->next;
+         }
+         else{
+             temp1=temp1->next;
+         }
+     }
+     return head;
+}
