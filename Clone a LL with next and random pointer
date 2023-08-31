@@ -1,0 +1,35 @@
+Input: head = [[7,null],[13,0],[11,4],[10,2],[1,0]]
+Output: [[7,null],[13,0],[11,4],[10,2],[1,0]]
+Code:
+
+ Node* solve(Node*head){
+        if(!head)return 0;
+        Node* it=head;
+        while(it){
+           Node* clonenode=new Node(it->val);
+           clonenode->next=it->next;
+           it->next=clonenode;
+           it=it->next->next;
+        }
+        it=head;
+       while(it){
+        Node*clonenode=it->next;
+        clonenode->random=it->random?it->random->next:NULL;
+        it=it->next->next;
+       }
+       it=head;
+       Node*clonenodehead=it->next;
+       while(it){
+         Node*clonenode=it->next;
+         it->next=it->next->next;
+         if(clonenode->next){
+             clonenode->next=clonenode->next->next;
+         }
+         it=it->next;
+       }
+       return clonenodehead;
+       
+    }
+    Node* copyRandomList(Node* head) {
+      return solve(head);  
+    }
