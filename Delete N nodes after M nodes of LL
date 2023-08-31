@@ -1,0 +1,35 @@
+Input:
+2
+8
+2 1
+9 1 3 5 9 4 10 1
+6
+6 1
+1 2 3 4 5 6 
+
+Output: 
+9 1 5 9 10 1
+1 2 3 4 5 6
+Code:
+
+void linkdelete(struct Node  *head, int M, int N)
+    {
+       if(head==NULL)return;
+       Node*it=head;
+       for(int i=0;i<M-1;i++){
+           if(!it)return;
+           it=it->next;
+       }
+       if(!it)return;
+       Node* mthnode=it;
+       it=mthnode->next;
+      for(int i=0;i<N;i++){
+          if(!it)break;
+       Node*temp=it->next;
+       delete it;
+       it=temp;
+      }
+      mthnode->next=it;
+      linkdelete(it,M,N); 
+       
+    }
