@@ -1,0 +1,30 @@
+Input:
+LinkedList: 25->36->47->58->69->80
+data: 19
+Output: 
+19 25 36 47 58 69 80
+Explanation:
+After inserting 19 the sorted linked list will look like the one in the output.
+CODE:
+
+Node *sortedInsert(struct Node* head, int data) {
+        Node* temp=head;
+        Node* newnode=new Node(data);
+        while(temp->next!=NULL){
+            if(temp->next->data<data){
+             temp=temp->next; 
+            }
+            else{
+                break;
+            }
+        }
+         if(data<head->data){
+            newnode->next=head;
+            head=newnode;
+        }
+        else{
+            newnode->next=temp->next;
+            temp->next=newnode;
+        }
+        return head;
+    }
